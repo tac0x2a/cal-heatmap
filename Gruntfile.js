@@ -9,6 +9,8 @@ module.exports = function(grunt) {
 
                 " *  Licensed under the <%= pkg.license %> license\n" +
                 " *  Copyright 2014 <%= pkg.author.name %>\n" +
+                " *  Copyright 2018 <%= pkg.maintainer.name %>\n" +
+                " *  Contributors: <%= pkg.contributors.join(', ') %>\n " +
                 " */\n";
 
     // Project configuration.

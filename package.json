@@ -1,7 +1,7 @@
 {
   "name": "cal-heatmap",
-  "version": "3.6.2",
-  "description": "Cal-Heatmap is a javascript module to create calendar heatmap to visualize time series data",
+  "version": "3.6.3-anki",
+  "description": "Fork of Cal-HeatMap for use in the Anki add-on Review Heatmap",
   "keywords": [
     "calendar",
     "graph",
@@ -42,13 +42,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/wa0x6e/cal-heatmap.git"
+    "url": "https://github.com/glutanimate/cal-heatmap.git"
   },
-  "homepage": "https://github.com/wa0x6e/cal-heatmap",
+  "homepage": "https://github.com/glutanimate/cal-heatmap",
   "author": {
     "name": "Wan Qi Chen",
     "url": "http://www.kamisama.me"
   },
+  "maintainer": {
+    "name": "Glutanimate",
+    "url": "https://glutanimate.com/"
+  },
+  "contributors": [
+    "gakada",
+    "Srdjan Prpa"
+  ],
   "license": "MIT",
   "gitHead": "e7bf798c210e0c25df9f6857bdb268001ef67fd1",
   "volo": {
@@ -61,7 +69,7 @@
       "d3": "^3.0.6"
     }
   },
-  "bugs": "https://github.com/wa0x6e/cal-heatmap/issues",
+  "bugs": "https://github.com/glutanimate/cal-heatmap/issues",
   "github": "https://github.com/wa0x6e/cal-heatmap",
   "categories": [
     "Data",

@@ -1,10 +1,12 @@
-/*! cal-heatmap v3.6.2 (Thu Mar 01 2018 18:38:27)
+/*! cal-heatmap v3.6.3-anki (Sat Sep 29 2018 16:58:30)
  *  ---------------------------------------------
- *  Cal-Heatmap is a javascript module to create calendar heatmap to visualize time series data
- *  https://github.com/wa0x6e/cal-heatmap
+ *  Fork of Cal-HeatMap for use in the Anki add-on Review Heatmap
+ *  https://github.com/glutanimate/cal-heatmap
  *  Licensed under the MIT license
  *  Copyright 2014 Wan Qi Chen
- */
+ *  Copyright 2018 Glutanimate
+ *  Contributors: gakada, Srdjan Prpa
+  */
 
 var d3 = typeof require === "function" ? require("d3") : window.d3;
 
@@ -754,6 +756,8 @@ var CalHeatMap = function() {
 				.map(function(day) {
 					return self.formatDate(d3.time[day](new Date()), "%a").charAt(0);
 				});
+            // Remove existing day-name group
+			this.root.selectAll(".day-name").remove();
 			// Append "day-name" group to SVG
 			var dayLabelSvgGroup = this.root.append("svg")
 				.attr("class", "day-name")
@@ -1176,7 +1180,7 @@ CalHeatMap.prototype = {
 		}
 
 		if (d3.select(options.itemSelector)[0][0] === null) {
-			throw new Error("The node '" + options.itemSelector + "' specified in itemSelector does not exists");
+			throw new Error("The node '" + options.itemSelector + "' specified in itemSelector does not exist");
 		}
 
 		try {
@@ -1732,22 +1736,31 @@ CalHeatMap.prototype = {
 		"use strict";
 
 		if (d.v === null && !this.options.considerMissingDataAsZero) {
-			return this.formatStringWithObject(this.options.subDomainTitleFormat.empty , {
+			var emptyObject = {
 				date: this.formatDate(new Date(d.t), this.options.subDomainDateFormat)
-			});
+			};
+			if (typeof this.options.subDomainTitleFormat === "function") {
+				return this.options.subDomainTitleFormat(true, emptyObject, d);
+			} else {
+				return this.formatStringWithObject(this.options.subDomainTitleFormat.empty, emptyObject);
+			}
 		} else {
 			var value = d.v;
 			// Consider null as 0
 			if (value === null && this.options.considerMissingDataAsZero) {
 				value = 0;
 			}
-
-			return this.formatStringWithObject(this.options.subDomainTitleFormat.filled, {
+			var object = {
 				count: this.formatNumber(value),
 				name: this.options.itemName[(value !== 1 ? 1: 0)],
 				connector: this._domainType[this.options.subDomain].format.connector,
 				date: this.formatDate(new Date(d.t), this.options.subDomainDateFormat)
-			});
+			};
+			if (typeof this.options.subDomainTitleFormat === "function") {
+				return this.options.subDomainTitleFormat(false, object, d);
+			} else {
+				return this.formatStringWithObject(this.options.subDomainTitleFormat.filled, object);
+			}
 		}
 	},
 

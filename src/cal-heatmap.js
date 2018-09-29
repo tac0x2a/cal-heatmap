@@ -746,6 +746,8 @@ var CalHeatMap = function() {
 				.map(function(day) {
 					return self.formatDate(d3.time[day](new Date()), "%a").charAt(0);
 				});
+            // Remove existing day-name group
+			this.root.selectAll(".day-name").remove();
 			// Append "day-name" group to SVG
 			var dayLabelSvgGroup = this.root.append("svg")
 				.attr("class", "day-name")

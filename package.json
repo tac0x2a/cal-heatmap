@@ -1,6 +1,6 @@
 {
   "name": "cal-heatmap",
-  "version": "3.6.3-anki",
+  "version": "3.6.3.1-anki",
   "description": "Fork of Cal-HeatMap for use in the Anki add-on Review Heatmap",
   "keywords": [
     "calendar",

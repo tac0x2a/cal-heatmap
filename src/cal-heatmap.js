@@ -65,6 +65,10 @@ var CalHeatMap = function() {
 
 		maxDate: null,
 
+		// Date regarded as today
+		// @default now
+		today: new Date(),
+
 		// ================================================
 		// DATA
 		// ================================================
@@ -1987,7 +1991,7 @@ CalHeatMap.prototype = {
 	isNow: function(d) {
 		"use strict";
 
-		return this.dateIsEqual(d, new Date());
+		return this.dateIsEqual(d, this.options.today);
 	},
 
 	/**

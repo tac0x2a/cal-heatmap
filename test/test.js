@@ -1,4 +1,4 @@
-/*! cal-heatmap v3.6.3.1-anki (Tue Oct 16 2018 05:06:03)
+/*! cal-heatmap v3.6.3.2-anki (Thu Oct 25 2018 11:50:24)
  *  ---------------------------------------------
  *  Fork of Cal-HeatMap for use in the Anki add-on Review Heatmap
  *  https://github.com/glutanimate/cal-heatmap

@@ -55,7 +55,7 @@ var CalHeatMap = function() {
 		weekStartOnMonday: true,
 
 		//Show week name when showing full month
-    dayLabel: false,
+		dayLabel: false,
 
 		// Start date of the graph
 		// @default now
@@ -2783,12 +2783,18 @@ CalHeatMap.prototype = {
 		var graphWidth = parent.graphDim.width - options.domainGutter - options.cellPadding;
 		var graphHeight = parent.graphDim.height - options.domainGutter - options.cellPadding;
 
+		// Quick fix to adjust for width added by day labels
+		var dayLabelWidth = 0;
+		if (options.dayLabel && options.domain === "month" && options.subDomain === "day") {
+			dayLabelWidth = options.cellSize + options.cellPadding;
+		}
+		
 		this.root.transition().duration(options.animationDuration)
 			.attr("width", function() {
 				if (options.legendVerticalPosition === "middle" || options.legendVerticalPosition === "center") {
-					return graphWidth + legendWidth;
+					return graphWidth + legendWidth + dayLabelWidth;
 				}
-				return Math.max(graphWidth, legendWidth);
+				return Math.max(graphWidth, legendWidth) + dayLabelWidth;
 			})
 			.attr("height", function() {
 				if (options.legendVerticalPosition === "middle" || options.legendVerticalPosition === "center") {
@@ -2806,16 +2812,12 @@ CalHeatMap.prototype = {
 				return 0;
 			})
 			.attr("x", function() {
-				var xPosition = 0;
-				if (options.dayLabel && options.domain === "month" && options.subDomain === "day") {
-					xPosition = options.cellSize + options.cellPadding;
-				}
 				if (
 					(options.legendVerticalPosition === "middle" || options.legendVerticalPosition === "center") &&
 					options.legendHorizontalPosition === "left") {
-					return legendWidth + xPosition;
+					return legendWidth + dayLabelWidth;
 				}
-				return xPosition;
+				return dayLabelWidth;
 
 			})
 		;

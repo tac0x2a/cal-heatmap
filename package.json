@@ -1,7 +1,7 @@
 {
   "name": "cal-heatmap",
-  "version": "3.6.3.2-anki",
-  "description": "Fork of Cal-HeatMap for use in the Anki add-on Review Heatmap",
+  "version": "4.0.0",
+  "description": "d3v4 Cal-HeatMap",
   "keywords": [
     "calendar",
     "graph",
@@ -23,17 +23,14 @@
     "grunt-contrib-concat": "~0.5.0",
     "grunt-contrib-watch": "~0.6.1",
     "grunt-contrib-qunit": "~0.5.2",
-
     "grunt-css": "~0.5.4",
     "grunt-replace": "~0.8.0",
-
     "phantomjs": "~1.9.15",
     "karma": "~0.12.31",
     "karma-coverage": "~0.2.7",
     "karma-qunit": "~0.1.4",
     "karma-phantomjs-launcher": "~0.1.4",
     "grunt-karma-coveralls": "~2.5.3",
-
     "qunitjs": "~1.17.0",
     "jquery": "~1.9.1"
   },

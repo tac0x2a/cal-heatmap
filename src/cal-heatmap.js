@@ -1173,13 +1173,8 @@ CalHeatMap.prototype = {
 			throw new Error("The data type '" + options.dataType + "' is not valid data type");
 		}
 
-<<<<<<< HEAD
-		if (d3.select(options.itemSelector)[0][0] === null) {
-			throw new Error("The node '" + options.itemSelector + "' specified in itemSelector does not exist");
-=======
 		if (d3.select(options.itemSelector).empty()) {
 			throw new Error("The node '" + options.itemSelector + "' specified in itemSelector does not exists");
->>>>>>> 97ecb148ea61b24e30875f43283f126af298c698
 		}
 
 		try {

@@ -1,4 +1,4 @@
-/*! cal-heatmap v4.0.0 (Sun Mar 17 2019 09:38:11)
+/*! cal-heatmap v4.0.0 (Sun Mar 17 2019 10:01:35)
  *  ---------------------------------------------
  *  d3v4 Cal-HeatMap
  *  https://github.com/glutanimate/cal-heatmap
@@ -69,7 +69,7 @@ asyncTest("Destroying the calendar", function() {
 	expect(3);
 
 	var node = d3.select("body").append("div").attr("id", "test-destroy");
-	var cal = createCalendar({itemSelector: node[0][0], animationDuration: 0, paintOnLoad: true});
+	var cal = createCalendar({itemSelector: node.nodes()[0], animationDuration: 0, paintOnLoad: true});
 
 	ok(cal !== null, "the instance is created");
 

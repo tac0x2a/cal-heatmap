@@ -592,6 +592,8 @@ var CalHeatMap = function() {
 	this.domainPosition = new DomainPosition();
 	this.Legend = null;
 	this.legendScale = null;
+	// add the linear scale to this in case we want to use instead of threshold
+	this.colorScale = null;
 
 	// List of domains that are skipped because of DST
 	// All times belonging to these domains should be re-assigned to the previous domain
@@ -3296,7 +3298,7 @@ Legend.prototype.redraw = function(width) {
 		;
 	}
 
-	legendItem
+	var legendEnter = legendItem
 		.enter()
 		.append("rect")
 		.call(legendCellLayout)
@@ -3306,15 +3308,18 @@ Legend.prototype.redraw = function(width) {
 			if (calendar.legendScale !== null && options.legendColors !== null && options.legendColors.hasOwnProperty("base")) {
 				selection.attr("fill", options.legendColors.base);
 			}
-		})
-		.append("title")
-	;
+		});
+	
+	
+	legendEnter.append("title");
+
+	var legendUpdate = legendItem.merge(legendEnter);
 
 	legendItem.exit().transition().duration(options.animationDuration)
 	.attr("fill-opacity", 0)
 	.remove();
 
-	legendItem.transition().delay(function(d, i) { return options.animationDuration * i/10; })
+	legendUpdate.transition().delay(function(d, i) { return options.animationDuration * i/10; })
 		.call(legendCellLayout)
 		.attr("fill-opacity", 1)
 		.call(function(element) {
@@ -3332,6 +3337,7 @@ Legend.prototype.redraw = function(width) {
 			element.attr("class", function(d) { return calendar.Legend.getClass(d, (calendar.legendScale === null)); });
 		})
 	;
+
 
 	function legendCellLayout(selection) {
 		selection
@@ -3463,6 +3469,8 @@ Legend.prototype.buildColors = function() {
 	;
 
 	var legendColors = _legend.map(function(element) { return colorScale(element); });
+	// add the linear scale to this in case we want to use instead of threshold
+	this.calendar.colorScale = colorScale;
 	this.calendar.legendScale = d3.scaleThreshold().domain(options.legend).range(legendColors);
 
 	return true;
